@@ -96,7 +96,15 @@ export const entryDelete = ({ uid }) => {
 
 
 export const searchChanged = (value) => {
-  //const { search } = this.props;  //Go query your database here with "value"
+  //const { search } = this.props;  
+
+  //Go query your database here with "value"
+
+  //Then dispatch your search results into the redux store like this
+  //dispatch(searchResults(resultsFromDatabaseQuery))
+
+  //Then in your app level code you can access, once you create the reducer...
+  //this.props.searchResults.
 
 
   return (dispatch) => {
