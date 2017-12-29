@@ -27,4 +27,3 @@ export const SEARCH_RESULT_SUCCESS = 'search_result_success';
 export const IMAGE_SAVE_SUCCESS = 'image_save_success';
 export const SOLD_RESULT_SUCCESS = 'sold_result_success';
 export const SOLD_ENTRY_SAVE_SUCCESS = 'sold_entry_save_success';
-export const SEARCH_EQUALS_SUCCESS = 'search_equals_success';

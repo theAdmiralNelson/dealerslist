@@ -79,6 +79,7 @@ const loginUserSuccess = (dispatch, user) => {
 
   Actions.main();
 };
+
 const loginUserFail = (dispatch) => {
   dispatch({ type: LOGIN_USER_FAIL });
 };
@@ -107,38 +108,39 @@ const createUserFail = (dispatch) => {
 };
 
 const passwordSuccess = (dispatch) => {
-      dispatch({
-        type: PASSWORD_SUCCESS,
-      });
+  dispatch({
+    type: PASSWORD_SUCCESS,
+  });
 
-      Actions.auth();
-    };
+  Actions.auth();
+};
 
 const passwordFail = (dispatch) => {
-      dispatch({
-        type: PASSWORD_FAIL
-      });
+  dispatch({
+    type: PASSWORD_FAIL
+  });
+};
+
+
+
+const logoutUserSuccess = (dispatch) => {
+  dispatch({
+    type: LOGOUT_USER_SUCCESS,
+  });
+
+  Actions.auth();
+};
+
+const logoutUserFail = (dispatch) => {
+  dispatch({ type: LOGOUT_USER_FAIL });
+};
+
+export const resetPassword = ({ emailAd }) => {
+  return (dispatch) => {
+    dispatch({ type: RESET_PASSWORD });
+
+      firebase.auth().sendPasswordResetEmail(emailAd)
+        .then(() => passwordSuccess(dispatch))
+          .catch(() => passwordFail(dispatch));
     };
-
-
-
-      const logoutUserSuccess = (dispatch) => {
-        dispatch({
-          type: LOGOUT_USER_SUCCESS,
-        });
-
-        Actions.auth();
-      };
-      const logoutUserFail = (dispatch) => {
-        dispatch({ type: LOGOUT_USER_FAIL });
-      };
-
-      export const resetPassword = ({ emailAd }) => {
-        return (dispatch) => {
-          dispatch({ type: RESET_PASSWORD });
-      
-          firebase.auth().sendPasswordResetEmail(emailAd)
-          .then(() => passwordSuccess(dispatch))
-            .catch(() => passwordFail(dispatch));
-              };
-          };
+};

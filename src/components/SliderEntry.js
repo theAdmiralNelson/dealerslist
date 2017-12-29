@@ -77,7 +77,7 @@ export default class SliderEntry extends Component {
                     >
                         { model }
                     </Text>
-              
+
                 </View>
 
             </TouchableOpacity>

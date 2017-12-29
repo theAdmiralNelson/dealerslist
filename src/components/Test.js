@@ -15,15 +15,11 @@ import Testing from './Testing';
 import SliderEntry from './SliderEntry';
 import SearchedEntriesSelector from '../selectors/searchedEntries'
 
-//import ImageUpload from './ImageUpload';
-
-
-class EmployeeList extends Component {
+class Test extends Component {
   componentWillMount() {
     //this.props.entryFetch();
 
   this.props.searchResult();
-  //this.props.SearchedEntriesSelector();
   //console.log(this.props.employees);
 
 
@@ -52,11 +48,11 @@ class EmployeeList extends Component {
       Actions.employeeCreate();
     }
 
-  createDataSource({ entries }) {
+  createDataSource({ employees }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-    this.dataSource = ds.cloneWithRows(entries);
+    this.dataSource = ds.cloneWithRows(employees);
     }
 
 
@@ -250,14 +246,10 @@ const mapStateToProps = (state) => {
   const employees = _.map(state.employees, (val, uid) => {
     return { ...val, uid };
   });
-  const entries = _.map(SearchedEntriesSelector(state), (val, uid) => {
-    return { ...val, uid };
-  });
   return {
     employees,
-    entries
+    entries: SearchedEntriesSelector(state)
    };
 };
 
-export default connect(mapStateToProps, { searchResult, entryClear, logoutUser })(EmployeeList);
-//#9bc5c3
+export default connect(mapStateToProps, { searchResult, entryClear, logoutUser })(Test);

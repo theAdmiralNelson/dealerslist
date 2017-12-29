@@ -1,6 +1,5 @@
 import * as firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
-//import { thunk } from 'redux-thunk';
 import _ from 'lodash';
 import {
   ENTRY_UPDATE,
@@ -11,8 +10,7 @@ import {
   SEARCH_RESULT_SUCCESS,
   SEARCH_CHANGED,
   SOLD_RESULT_SUCCESS,
-  SOLD_ENTRY_SAVE_SUCCESS,
-  SEARCH_EQUALS_SUCCESS
+  SOLD_ENTRY_SAVE_SUCCESS
 } from './types';
 
 export const entryUpdate = ({ prop, value }) => {
@@ -26,12 +24,22 @@ export const entryCreate = ({ make, model, year, image, price, miles, descriptio
   const { currentUser } = firebase.auth();
   const keys = firebase.database().ref(`/users/${currentUser.uid}/entries`)
     .push();
-    //console.log("hiya");
-  return (dispatch) => {
-    keys.setWithPriority({ make, model, year, uid: keys.key, image, sold: false, price, miles, description }, 0 - Date.now())
-    .then(() => {
-      dispatch({ type: ENTRY_CREATE });
-      //console.log(this.props.image);
+
+    return (dispatch) => {
+    keys.setWithPriority({
+      make,
+      model,
+      year,
+      uid: keys.key,
+      image,
+      sold: false,
+      price,
+      miles,
+      description
+    }, 0 - Date.now())
+      .then(() => {
+        dispatch({ type: ENTRY_CREATE });
+
       Actions.main({ type: 'reset' });
     });
   };
@@ -51,7 +59,6 @@ export const entryFetch = () => {
 
 export const entrySave = ({ make, model, year, uid, image, sold, price, miles, description }) => {
   const { currentUser } = firebase.auth();
-//console.log(make, model, year, uid, sold, price, miles, description);
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/entries/${uid}`)
       .set({ make, model, year, image, sold, price, miles, description })
@@ -62,9 +69,18 @@ export const entrySave = ({ make, model, year, uid, image, sold, price, miles, d
   };
 };
 
-export const soldEntrySave = ({ make, model, year, uid, image, sold, price, miles, description }) => {
+export const soldEntrySave = ({
+  make,
+  model,
+  year,
+  uid,
+  image,
+  sold,
+  price,
+  miles,
+  description
+}) => {
   const { currentUser } = firebase.auth();
-//console.log(make, model, year, uid, sold, price, miles, description);
   return (dispatch) => {
     firebase.database().ref(`/users/${currentUser.uid}/entries/${uid}`)
       .set({ make, model, year, image, sold, price, miles, description })
@@ -95,13 +111,10 @@ export const entryDelete = ({ uid }) => {
 };
 
 
-export const searchChanged = (value) => {
-  //const { search } = this.props;
-  return (dispatch) => {
-    dispatch({ type: SEARCH_CHANGED,
-    payload: value
-  });
-    searchEquals(dispatch);
+export const searchChanged = (text) => {
+  return {
+    type: SEARCH_CHANGED,
+    payload: text
   };
 };
 
@@ -111,28 +124,14 @@ export const searchResult = () => {
   return (dispatch) => {
 
     firebase.database().ref(`/users/${currentUser.uid}/entries`)
-    .orderByValue()
+      .orderByValue()
       .on('value', snapshot => {
           const myObj = snapshot.val();
-            //const element = 'John';
-            //console.log(data);
-
-      //const list = _.pickBy(myObj, (((value) => value.make.indexOf(element) !== -1 || value.model.indexOf(element) !== -1) && ((value) => value.sold === false)));
-
-
-        dispatch({ type: SEARCH_RESULT_SUCCESS, payload: myObj });
+          dispatch({ type: SEARCH_RESULT_SUCCESS, payload: myObj });
       });
   };
 };
 
- const searchEquals = ({ items, search }) => {
-   //console.log("maybe");
-   //const element = 'John';
-  const list = _.pickBy(items, (((value) => value.items.make.indexOf(search) !== -1 || value.items.model.indexOf(search) !== -1) && ((value) => value.items.sold === false)));
-  return (dispatch) => {
-  dispatch({ type: SEARCH_EQUALS_SUCCESS, payload: list });
-  };
-};
 
 export const soldResult = () => {
   const { currentUser } = firebase.auth();

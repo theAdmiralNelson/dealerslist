@@ -6,25 +6,29 @@ import LinearGradient from 'react-native-linear-gradient';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 //import ListItem from './ListItem';
-import { entryFetch, searchResult, entryClear, logoutUser } from '../actions';
+import { entryFetch, test, entryClear, logoutUser } from '../actions';
 import Card from './common/Card';
 import CardReform from './common/CardReform';
-//import CardSection from './common/CardSection';
-//import Input from './common/Input';
+import Button from './common/Button';
+import Input from './common/Input';
 import Testing from './Testing';
 import SliderEntry from './SliderEntry';
-import SearchedEntriesSelector from '../selectors/searchedEntries'
 
 //import ImageUpload from './ImageUpload';
 
 
-class EmployeeList extends Component {
+class SearchTest extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { searchText: '' };
+    }
+
+
   componentWillMount() {
     //this.props.entryFetch();
 
-  this.props.searchResult();
-  //this.props.SearchedEntriesSelector();
-  //console.log(this.props.employees);
+  this.props.test();
+  console.log(this.props.testing);
 
 
     this.createDataSource(this.props);
@@ -34,10 +38,10 @@ class EmployeeList extends Component {
     this.createDataSource(nextProps);
     }
 
+
     onLogoutButtonPress() {
       this.props.logoutUser();
     }
-
 
     onSoldButtonPress() {
       const { make, model, year, image, price, miles, description } = this.props;
@@ -52,11 +56,22 @@ class EmployeeList extends Component {
       Actions.employeeCreate();
     }
 
-  createDataSource({ entries }) {
+    handleSubmitSearch() {
+       this.props.test();
+       console.log(this.props.testing);
+     }
+     handleChange(text) {
+       this.setState({
+         searchText: text
+       });
+       //this.props.test(this.state.searchText);
+     }
+
+  createDataSource({ employees }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-    this.dataSource = ds.cloneWithRows(entries);
+    this.dataSource = ds.cloneWithRows(employees);
     }
 
 
@@ -70,9 +85,6 @@ class EmployeeList extends Component {
 
 
   render() {
-    //console.log(this.props.searching);
-    console.log(this.props.employees);
-    console.log(this.props.entries);
 
   //  console.log(this.props.employees);
     //this.props.searching);
@@ -104,7 +116,6 @@ class EmployeeList extends Component {
     </TouchableOpacity>
     <View style={{ alignSelf: 'center', alignItems: 'center', flex: 1 }}>
         <Text style={{ alignSelf: 'center', color: 'white', paddingBottom: 5, paddingTop: Platform.OS === 'ios' ? 20 : 5 }}>LISTED ITEMS</Text>
-        <Testing style={{ alignSelf: 'center' }} />
     </View>
           <TouchableOpacity style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} >
             <Text
@@ -131,6 +142,17 @@ class EmployeeList extends Component {
       >
         {this.props.error}
       </Text>
+
+      <Input
+      //style={styles.searchbar}
+      placeholder="Search"
+      onChangeText={this.handleChange.bind(this)}
+      value={this.state.searchText}
+      returnKeyType={'search'}
+      />
+
+      <Button onPress={this.handleSubmitSearch.bind(this)} >Search!</Button>
+
 
       <ListView
             contentContainerStyle={{ alignItems: 'center' }}
@@ -246,18 +268,11 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-
-  const employees = _.map(state.employees, (val, uid) => {
+  const employees = _.map(state.testing, (val, uid) => {
     return { ...val, uid };
   });
-  const entries = _.map(SearchedEntriesSelector(state), (val, uid) => {
-    return { ...val, uid };
-  });
-  return {
-    employees,
-    entries
-   };
+  return { employees };
 };
 
-export default connect(mapStateToProps, { searchResult, entryClear, logoutUser })(EmployeeList);
+export default connect(mapStateToProps, { test, entryClear, logoutUser })(SearchTest);
 //#9bc5c3

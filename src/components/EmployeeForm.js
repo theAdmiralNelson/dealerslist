@@ -73,25 +73,13 @@ class EmployeeForm extends Component {
           const { image } = this.props;
           this.props.entryUpdate({ prop: 'image', value: url });
         }
-
-
-          //firebase.database().ref('users').child(uid).update({ ...userData})
-
-          //let image = {}
-        //  image["loading"] = false
-          //image["dp"] = url
           this.setState({ loading: false });
-          //{value => this.props.entryUpdate({ prop: 'image', value });
-        //}
       });
     });
   }
 
   render() {
     const { image } = this.props.employee;
-    //const sub = 'https://firebasestorage.googleapis.com/v0/b/ag-equipment-southwest.appspot.com/o/1512597242321.1887.jpg?alt=media&token=2163aadd-412c-4b78-b7d1-cc464b378bef'
-    //const logic = this.props.employee.image === '' ? sub : image;
-    //const imageRef = this.props.image;
     const dps = this.state.loading ? <Spinner animating={this.state.loading} /> :
     (<View style={styles.container}>
 
@@ -127,7 +115,6 @@ class EmployeeForm extends Component {
               })}
               onValueChange={value => this.props.entryUpdate({ prop: 'sold', value })}
               value={this.props.sold}
-              //{value => this.props.entryUpdate({ prop: 'sold', value })}
             />
           </View>
         </View>

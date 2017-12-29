@@ -5,14 +5,10 @@ import { connect } from 'react-redux';
 import firebase from 'firebase';
 import RNFetchBlob from 'react-native-fetch-blob';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
-import { BoxShadow } from 'react-native-shadow';
 import { entryUpdate } from '../actions';
 import CardSection from './common/CardSection';
 import InputReform from './common/InputReform';
 import InputReform2 from './common/InputReform2';
-import PickerCard from './common/PickerCard';
-import Button from './common/Button';
-import Card from './common/Card';
 import Spinner from './common/Spinner';
 
 class CreateForm extends Component {
@@ -30,8 +26,6 @@ class CreateForm extends Component {
     const fs = RNFetchBlob.fs;
     window.XMLHttpRequest = RNFetchBlob.polyfill.XMLHttpRequest
     window.Blob = Blob
-    //const { uid } = this.state.user
-    //const { currentUser } = firebase.auth();
     const item = Date.now() + Math.random();
     ImagePicker.openPicker({
       width: 400,
@@ -40,7 +34,7 @@ class CreateForm extends Component {
       mediaType: 'photo',
     })
      .catch(imageChangeFail())
-    .then(image => {
+      .then(image => {
       const imagePath = image.path;
 
       let uploadBlob = null;
@@ -50,60 +44,55 @@ class CreateForm extends Component {
       const mime = 'image/jpg';
       fs.readFile(imagePath, 'base64')
         .then((data) => {
-          //console.log(data);
           return Blob.build(data, { type: `${mime};BASE64` });
-      })
-      .then((blob) => {
+        })
+          .then((blob) => {
           uploadBlob = blob;
           return imageRef.put(blob, { contentType: mime });
-        })
-        .then(() => {
-          uploadBlob.close();
-          return imageRef.getDownloadURL();
-        })
-
-
-        .then((url) => {
-          const { image } = this.props;
-
-          this.props.entryUpdate({ prop: 'image', value: url })
-        })
-
-          this.setState({ loading: false });
-      });
-  }
+          })
+            .then(() => {
+              uploadBlob.close();
+                return imageRef.getDownloadURL();
+            })
+              .then((url) => {
+              const { image } = this.props;
+                this.props.entryUpdate({ prop: 'image', value: url })
+              })
+                this.setState({ loading: false });
+          });
+        }
 
 render() {
   const dpr = this.props.image ?
-  (<TouchableOpacity
-    style={{
-    backgroundColor: 'transparent'
-  }}
-  >
-  <Image
-       style={{ width: 80,
-       height: 60,
-       margin: 5,
-       paddingBottom: 5,
-       borderRadius: 10
-     }}
-       source={{ uri: this.props.image }}
-  />
-  </TouchableOpacity>) :
-  (<TouchableOpacity
-    onPress={() => this.openImage()}
-  >
-    <Text
-    style={{
-      color: '#000',
-      alignSelf: 'center',
-      }}
+    (<TouchableOpacity
+      style={{
+      backgroundColor: 'transparent'
+    }}
     >
-      <Icon name="photo-camera" size={45} color="#000" />
-    </Text>
+      <Image
+           style={{ width: 80,
+           height: 60,
+           margin: 5,
+           paddingBottom: 5,
+           borderRadius: 10
+         }}
+           source={{ uri: this.props.image }}
+      />
+    </TouchableOpacity>) :
+    (<TouchableOpacity
+      onPress={() => this.openImage()}
+    >
+      <Text
+      style={{
+        color: '#000',
+        alignSelf: 'center',
+        }}
+      >
+        <Icon name="photo-camera" size={45} color="#000" />
+      </Text>
 
     </TouchableOpacity>
-);
+ );
 
 
   const dps = this.state.loading ? <Spinner animating={this.state.loading} /> :

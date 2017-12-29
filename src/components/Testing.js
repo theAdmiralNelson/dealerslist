@@ -11,15 +11,19 @@ import Input from './common/Input';
 
 class Testing extends Component {
 
+  onSearchChange(text) {
+    this.props.searchChanged(text);
+  }
+
 render() {
-  //const myIcon = (<Icon name="rocket" size={30} color="#900" />)
+  console.log(this.props.search);
   return (
     <View>
 
         <Input
         //style={styles.searchbar}
         placeholder="Search"
-        onChangeText={value => this.props.searchChanged(value)}
+        onChangeText={this.onSearchChange.bind(this)}
         value={this.props.search}
         returnKeyType={'search'}
         />
@@ -30,9 +34,9 @@ render() {
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({ searching }) => {
 
-  const { search } = state.employees;
+  const { search } = searching;
   return { search };
 };
 //const mapDispatchToProps = (dispatch) => {

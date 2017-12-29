@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Scene, Router, Actions } from 'react-native-router-flux';
+import { Stack, Scene, Router, Actions, Drawer } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
@@ -10,6 +10,7 @@ import PasswordReset from './components/PasswordReset';
 import ShareFile from './components/ShareFile';
 import Sold from './components/Sold';
 import SoldEmployeeEdit from './components/SoldEmployeeEdit';
+import Test from './components/Test';
 
 const RouterComponent = () => {
   return (
@@ -56,9 +57,9 @@ const RouterComponent = () => {
             component={Sold}
             title="Sold List"
           />
-          <Scene
+          <Drawer
             key="testing"
-            component={Testing}
+            component={Test}
             title="Edit Employee"
           />
          </Scene>
