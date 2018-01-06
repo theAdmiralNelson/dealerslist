@@ -12,7 +12,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import firebase from 'firebase';
 import RNFetchBlob from 'react-native-fetch-blob';
 import { connect } from 'react-redux';
-import { entryUpdate } from '../actions';
+import { entryUpdate, loadTrue, loadFalse } from '../actions';
 import CardSection from './common/CardSection';
 import InputReform from './common/InputReform';
 import InputReform2 from './common/InputReform2';
@@ -24,14 +24,22 @@ import Spinner from './common/Spinner';
 
 class EmployeeForm extends Component {
 
-  componentWillMount() {
-    this.setState({ loading: false });
-  }
+
+  state = {
+    loading: false,
+   };
+
+   componentWillMount() {
+     this.props.loadFalse();
+   }
 
    openImage() {
-    this.setState({ loading: true });
-    const imageChangeFail = () => {
-      this.setState({ loading: false });
+     this.setState({ loading: false });
+     this.props.loadFalse();
+     console.log('yo!');
+     const imageChangeFail = () => {
+       this.setState({ loading: true });
+       this.props.loadTrue();
     };
     const Blob = RNFetchBlob.polyfill.Blob;
     const fs = RNFetchBlob.fs;
@@ -71,16 +79,19 @@ class EmployeeForm extends Component {
           return this.props.image;
         } else {
           const { image } = this.props;
-          this.props.entryUpdate({ prop: 'image', value: url });
-        }
-          this.setState({ loading: false });
+          this.props.entryUpdate({ prop: 'image', value: url })
+          }
+        })
+        .then(() => {
+        this.setState({ loading: false });
+        this.props.loadFalse();
       });
     });
   }
 
   render() {
     const { image } = this.props.employee;
-    const dps = this.state.loading ? <Spinner animating={this.state.loading} /> :
+    const dps = this.state.loading ? <Spinner animating={true} /> :
     (<View style={styles.container}>
 
 
@@ -133,8 +144,6 @@ class EmployeeForm extends Component {
         >
           <Text style={{ alignSelf: 'center' }}>Change Photo</Text>
           </ButtonReform2>
-
-            <Text style={styles.buttonTextStyle}>Changes will not appear until they are saved</Text>
 
 
         <View style={{ marginTop: 0 }}>
@@ -258,9 +267,10 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { make, model, year, sold, image, price, miles, description } = state.entryForm;
+  const { make, model, year, sold, image, price, miles, description, load } = state.entryForm;
+  //const { load } = state.loading;
 
-  return { make, model, year, sold, image, price, miles, description };
+  return { make, model, year, sold, image, price, miles, description, load };
 };
 
-export default connect(mapStateToProps, { entryUpdate })(EmployeeForm);
+export default connect(mapStateToProps, { entryUpdate, loadTrue, loadFalse })(EmployeeForm);

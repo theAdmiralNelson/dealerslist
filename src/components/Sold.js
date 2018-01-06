@@ -13,6 +13,7 @@ import CardReform from './common/CardReform';
 //import Input from './common/Input';
 import Testing from './Testing';
 import SoldSliderEntry from './SoldSliderEntry';
+import SoldSearchedEntriesSelector from '../selectors/soldSearchedEntries'
 
 //import ImageUpload from './ImageUpload';
 
@@ -35,11 +36,11 @@ class EmployeeList extends Component {
       Actions.employeeList();
     }
 
-  createDataSource({ employees }) {
+  createDataSource({ entries }) {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     });
-    this.dataSource = ds.cloneWithRows(employees);
+    this.dataSource = ds.cloneWithRows(entries);
     }
 
 
@@ -206,11 +207,12 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
-  const employees = _.map(state.employees, (val, uid) => {
-    return { ...val, uid };
-  });
-  console.log(employees);
-  return { employees };
+
+  const employees = state.employees;
+  return {
+    employees,
+    entries: SoldSearchedEntriesSelector(state)
+   };
 };
 
 export default connect(mapStateToProps, { soldResult, entryClear, logoutUser })(EmployeeList);

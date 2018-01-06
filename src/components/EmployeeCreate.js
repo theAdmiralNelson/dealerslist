@@ -39,7 +39,7 @@ onBackButtonPress() {
 }
 
 renderButton() {
-  if (this.props.make || this.props.model || this.props.image) {
+  if (this.props.image && this.props.make) {
     return (
       <TouchableOpacity
        onPress={this.onButtonPress.bind(this)}
@@ -61,8 +61,20 @@ renderButton() {
 
     </TouchableOpacity>
     );
+  } else {
+      return (
+        <Text
+        style={{ color: '#fff',
+        fontSize: 10,
+        alignSelf: 'center'
+        }}
+        >
+          MUST ADD A PHOTO AND MAKE TO CREATE AN ITEM
+        </Text>
+    );
   }
 }
+
 
   render() {
 
@@ -112,7 +124,7 @@ renderButton() {
     //fontFamily: 'WireOne'
     }}
     >
-     CREATE AN ENTRY
+     CREATE AN ITEM
    </Text>
           </View>
           <View style={{ flex: 1 }} />
@@ -144,11 +156,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#414544',
     //shadowOffset: { width: 0, heigth: 2 },
     opacity: Platform.OS === 'ios' ? 0.3 : 0.6,
-    //shadowRadius: 2,
-    //elevation: 1,
-    //marginLeft: 0,
-    //marginRight: 0,
-    //marginTop: 10
     flexDirection: 'column',
     //alignItems: 'center',
     justifyContent: 'center',

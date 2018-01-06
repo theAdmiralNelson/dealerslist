@@ -1,10 +1,10 @@
 import { createSelector } from 'reselect';
 import _ from 'lodash';
 
-const entriesSelector = state => state.employees;
-const searchSelector = state => state.searching.search;
+const soldEntriesSelector = state => state.employees;
+const soldSearchSelector = state => state.searching.search;
 
-const getEntries = (employees, search) => {
+const getSoldEntries = (employees, search) => {
 
   const mappedEntries = _.map(employees, (val, uid) => {
     return { ...val, uid };
@@ -12,19 +12,16 @@ const getEntries = (employees, search) => {
 
   const searchLowerCase = search.toLowerCase();
 
-  const searchedEntries = _.filter(mappedEntries,
+  const soldSearchedEntries = _.filter(mappedEntries,
     (value) => (value.make.toLowerCase().indexOf(searchLowerCase) !== -1 ||
       value.model.toLowerCase().indexOf(searchLowerCase) !== -1)
-        && value.sold === false);
+        && value.sold === true);
 
-  console.log(mappedEntries);
-  console.log(searchedEntries);
-
-  return searchedEntries;
+  return soldSearchedEntries;
   };
 
 export default createSelector(
-  entriesSelector,
-  searchSelector,
-  getEntries
+  soldEntriesSelector,
+  soldSearchSelector,
+  getSoldEntries
 );

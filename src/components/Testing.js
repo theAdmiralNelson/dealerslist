@@ -26,6 +26,7 @@ render() {
         onChangeText={this.onSearchChange.bind(this)}
         value={this.props.search}
         returnKeyType={'search'}
+        autoCapitalize='none'
         />
 
     </View>

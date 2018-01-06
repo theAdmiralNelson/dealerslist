@@ -20,12 +20,8 @@ import SearchedEntriesSelector from '../selectors/searchedEntries'
 
 class EmployeeList extends Component {
   componentWillMount() {
-    //this.props.entryFetch();
 
   this.props.searchResult();
-  //this.props.SearchedEntriesSelector();
-  //console.log(this.props.employees);
-
 
     this.createDataSource(this.props);
   }
@@ -61,7 +57,6 @@ class EmployeeList extends Component {
 
 
   renderRow(employee) {
-
     return (
             <SliderEntry employee={employee} style={{ alignSelf: 'center' }} />
 
@@ -70,12 +65,6 @@ class EmployeeList extends Component {
 
 
   render() {
-    //console.log(this.props.searching);
-    console.log(this.props.employees);
-    console.log(this.props.entries);
-
-  //  console.log(this.props.employees);
-    //this.props.searching);
     return (
   <LinearGradient
     colors={['#fff', '#bec3c3']}
@@ -247,15 +236,10 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => {
 
-  const employees = _.map(state.employees, (val, uid) => {
-    return { ...val, uid };
-  });
-  const entries = _.map(SearchedEntriesSelector(state), (val, uid) => {
-    return { ...val, uid };
-  });
+  const employees = state.employees;
   return {
     employees,
-    entries
+    entries: SearchedEntriesSelector(state)
    };
 };
 

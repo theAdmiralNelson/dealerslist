@@ -10,13 +10,26 @@ import {
   SEARCH_RESULT_SUCCESS,
   SEARCH_CHANGED,
   SOLD_RESULT_SUCCESS,
-  SOLD_ENTRY_SAVE_SUCCESS
+  SOLD_ENTRY_SAVE_SUCCESS,
+  LOADING_SUCCESS,
+  LOAD_TRUE,
+  LOAD_FALSE
 } from './types';
+
 
 export const entryUpdate = ({ prop, value }) => {
   return {
     type: ENTRY_UPDATE,
     payload: { prop, value }
+  };
+};
+
+export const loadingSuccess = ({ prop, value }) => {
+  return {
+    type: LOADING_SUCCESS,
+    payload: {
+      payload: { prop, value }
+    }
   };
 };
 
@@ -140,11 +153,22 @@ export const soldResult = () => {
     .orderByChild('uid')
       .on('value', snapshot => {
           const myObj = snapshot.val();
-          const element = 'John';
-          const list = _.pickBy(myObj, (((value) => value.make.indexOf(element) !== -1 || value.model.indexOf(element) !== -1) && ((value) => value.sold === true)));
+          const list = _.pickBy(myObj, ((value) => value.sold === true));
 
 
         dispatch({ type: SOLD_RESULT_SUCCESS, payload: list });
       });
+  };
+};
+
+export const loadFalse = () => {
+  return {
+    type: LOAD_FALSE,
+  };
+};
+
+export const loadTrue = () => {
+  return {
+    type: LOAD_TRUE,
   };
 };
