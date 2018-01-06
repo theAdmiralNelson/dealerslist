@@ -118,7 +118,7 @@ export const entryDelete = ({ uid }) => {
     firebase.database().ref(`/users/${currentUser.uid}/entries/${uid}`)
       .remove()
       .then(() => {
-        Actions.main({ type: 'reset' });
+        Actions.pop({ type: 'reset' });
       });
   };
 };
@@ -137,7 +137,7 @@ export const searchResult = () => {
   return (dispatch) => {
 
     firebase.database().ref(`/users/${currentUser.uid}/entries`)
-      .orderByValue()
+      .orderByChild('uid')
       .on('value', snapshot => {
           const myObj = snapshot.val();
           dispatch({ type: SEARCH_RESULT_SUCCESS, payload: myObj });
@@ -155,7 +155,7 @@ export const soldResult = () => {
           const myObj = snapshot.val();
           const list = _.pickBy(myObj, ((value) => value.sold === true));
 
-
+        console.log(myObj);
         dispatch({ type: SOLD_RESULT_SUCCESS, payload: list });
       });
   };

@@ -38,7 +38,7 @@ class EmployeeForm extends Component {
      this.props.loadFalse();
      console.log('yo!');
      const imageChangeFail = () => {
-       this.setState({ loading: true });
+       this.setState({ loading: false });
        this.props.loadTrue();
     };
     const Blob = RNFetchBlob.polyfill.Blob;
@@ -91,7 +91,7 @@ class EmployeeForm extends Component {
 
   render() {
     const { image } = this.props.employee;
-    const dps = this.state.loading ? <Spinner animating={true} /> :
+    const dps = this.state.loading ? <Spinner animating={'true'} /> :
     (<View style={styles.container}>
 
 

@@ -10,12 +10,15 @@ const getSoldEntries = (employees, search) => {
     return { ...val, uid };
   });
 
+  const sortMappedEntries = _.sortBy(mappedEntries, (value) => value.make);
+
   const searchLowerCase = search.toLowerCase();
 
-  const soldSearchedEntries = _.filter(mappedEntries,
+  const soldSearchedEntries = _.filter(sortMappedEntries,
     (value) => (value.make.toLowerCase().indexOf(searchLowerCase) !== -1 ||
       value.model.toLowerCase().indexOf(searchLowerCase) !== -1)
         && value.sold === true);
+
 
   return soldSearchedEntries;
   };

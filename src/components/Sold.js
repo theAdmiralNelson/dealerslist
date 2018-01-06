@@ -81,7 +81,7 @@ class EmployeeList extends Component {
     alignSelf: 'center'
    }}
     >
-    <Icon name="chevron-left" /> Back
+    <Icon name="chevron-left" /> Listed
    </Text>
    </TouchableOpacity>
 

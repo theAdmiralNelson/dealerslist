@@ -18,7 +18,7 @@ class CreateForm extends Component {
   }
 
    openImage() {
-    this.setState({ loading: true });
+    this.setState({ loading: false });
     const imageChangeFail = () => {
       this.setState({ loading: false });
     };
@@ -95,7 +95,7 @@ render() {
  );
 
 
-  const dps = this.state.loading ? <Spinner animating={this.state.loading} /> :
+  const dps = this.state.loading ? <Spinner animating={'true'} /> :
   (
     <View style={styles.container}>
 

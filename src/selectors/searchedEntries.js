@@ -12,7 +12,9 @@ const getEntries = (employees, search) => {
 
   const searchLowerCase = search.toLowerCase();
 
-  const searchedEntries = _.filter(mappedEntries,
+  const sortMappedEntries = _.sortBy(mappedEntries, (value) => value.make);
+
+  const searchedEntries = _.filter(sortMappedEntries,
     (value) => (value.make.toLowerCase().indexOf(searchLowerCase) !== -1 ||
       value.model.toLowerCase().indexOf(searchLowerCase) !== -1)
         && value.sold === false);
