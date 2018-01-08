@@ -5,16 +5,11 @@ import { ListView, View, TouchableOpacity, Text, StyleSheet, Platform } from 're
 import LinearGradient from 'react-native-linear-gradient';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
-//import ListItem from './ListItem';
-import { entryFetch, test, entryClear, logoutUser } from '../actions';
-import Card from './common/Card';
+import { test, entryClear, logoutUser } from '../actions';
 import CardReform from './common/CardReform';
 import Button from './common/Button';
 import Input from './common/Input';
-import Testing from './Testing';
 import SliderEntry from './SliderEntry';
-
-//import ImageUpload from './ImageUpload';
 
 
 class SearchTest extends Component {
@@ -25,10 +20,8 @@ class SearchTest extends Component {
 
 
   componentWillMount() {
-    //this.props.entryFetch();
 
   this.props.test();
-  console.log(this.props.testing);
 
 
     this.createDataSource(this.props);

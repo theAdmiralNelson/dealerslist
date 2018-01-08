@@ -31,12 +31,12 @@ import {
        return (dispatch) => {
          dispatch({
            type: LOGOUT_USER,
-          });
+         });
        firebase.auth().signOut()
          .then(() => logoutUserSuccess(dispatch))
            .catch(() => logoutUserFail(dispatch));
-         };
        };
+ };
 
 
  export const emailAdChanged = (text) => {
@@ -68,8 +68,8 @@ export const loginUser = ({ email, password }) => {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user))
         .catch(() => loginUserFail(dispatch));
-      };
-    };
+  };
+};
 
 const loginUserSuccess = (dispatch, user) => {
   dispatch({
@@ -91,8 +91,8 @@ export const createUser = ({ email, password }) => {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(user => createUserSuccess(dispatch, user))
         .catch(() => createUserFail(dispatch));
-      };
-    };
+  };
+};
 
 const createUserSuccess = (dispatch, user) => {
   dispatch({
@@ -121,8 +121,6 @@ const passwordFail = (dispatch) => {
   });
 };
 
-
-
 const logoutUserSuccess = (dispatch) => {
   dispatch({
     type: LOGOUT_USER_SUCCESS,
@@ -142,5 +140,5 @@ export const resetPassword = ({ emailAd }) => {
       firebase.auth().sendPasswordResetEmail(emailAd)
         .then(() => passwordSuccess(dispatch))
           .catch(() => passwordFail(dispatch));
-    };
+  };
 };

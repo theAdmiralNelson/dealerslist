@@ -4,13 +4,10 @@ import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
-import Testing from './components/Testing';
 import CreateUser from './components/CreateUser';
 import PasswordReset from './components/PasswordReset';
-import ShareFile from './components/ShareFile';
 import Sold from './components/Sold';
 import SoldEmployeeEdit from './components/SoldEmployeeEdit';
-import Test from './components/Test';
 
 const RouterComponent = () => {
   return (
@@ -32,8 +29,6 @@ const RouterComponent = () => {
             initial
           />
           <Scene
-              //onRight={() => Actions.searchBar(}
-            //rightTitle="Add"
             key="employeeCreate"
             component={EmployeeCreate}
             title="Create Employee"
@@ -56,11 +51,6 @@ const RouterComponent = () => {
             key="sold"
             component={Sold}
             title="Sold List"
-          />
-          <Drawer
-            key="testing"
-            component={Test}
-            title="Edit Employee"
           />
          </Scene>
       </Stack>

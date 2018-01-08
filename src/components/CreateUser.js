@@ -3,13 +3,14 @@ import { Text, View, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Madoka } from 'react-native-textinput-effects';
-import { emailChanged, passwordChanged, createUser, createUserPage } from '../actions';
-import Card from './common/Card';
-import CardSection from './common/CardSection';
-import Input from './common/Input';
+import {
+  emailChanged,
+  passwordChanged,
+  createUser,
+  createUserPage
+} from '../actions';
 import Button from './common/Button';
 import Spinner from './common/Spinner';
-
 
 
 class CreateUser extends Component {
@@ -54,7 +55,8 @@ class CreateUser extends Component {
       <View style={{ flex: 1, flexDirection: 'column' }}>
         <Image
           source={require('../images/createUser-background.png')}
-          style={styles.container} />
+          style={styles.container}
+        />
 
           <View style={{ paddingTop: '60%' }}>
               <Madoka
@@ -89,7 +91,7 @@ class CreateUser extends Component {
                value={this.props.password}
                autoCapitalize={'none'}
                autoCorrect={false}
-               secureTextEntry={true}
+               secureTextEntry={'true'}
                returnKeyType={'done'}
               />
               </View>
@@ -106,11 +108,9 @@ class CreateUser extends Component {
                 marginBottom: '60%',
                 fontFamily: 'Pacifico-Regular',
                 fontSize: 20
-                //fontWeight: 700
-                //fontStyle: 'regular'
                }}
                 >
-               Back To Login
+                Back To Login
                </Text>
               </TouchableOpacity>
             </View>
@@ -146,11 +146,6 @@ const styles = {
     alignItems: 'center',
     opacity: 0.85
   },
-
-
-  //inputStyle: {
-
-  //}
 };
 
 const mapStateToProps = ({ auth }) => {
@@ -159,4 +154,9 @@ const mapStateToProps = ({ auth }) => {
   return { email, password, error, loading };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, createUser, createUserPage })(CreateUser);
+export default connect(mapStateToProps, {
+  emailChanged,
+  passwordChanged,
+  createUser,
+  createUserPage
+})(CreateUser);

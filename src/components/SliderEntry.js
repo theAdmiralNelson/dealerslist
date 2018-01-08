@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { ParallaxImage } from 'react-native-snap-carousel';
 import { Actions } from 'react-native-router-flux';
@@ -9,7 +9,6 @@ export default class SliderEntry extends Component {
 
 
     static propTypes = {
-        //data: PropTypes.object.isRequired,
         even: PropTypes.bool,
         parallax: PropTypes.bool,
         parallaxProps: PropTypes.object
@@ -30,7 +29,7 @@ export default class SliderEntry extends Component {
               containerStyle={[styles.imageContainer, even ? styles.imageContainerEven : {}]}
               style={styles.image}
               parallaxFactor={0.35}
-              showSpinner={true}
+              showSpinner={'true'}
               spinnerColor={even ? 'rgba(255, 255, 255, 0.4)' : 'rgba(0, 0, 0, 0.25)'}
               {...parallaxProps}
             />
@@ -63,7 +62,7 @@ export default class SliderEntry extends Component {
               activeOpacity={1}
               style={styles.slideInnerContainer}
               onPress={this.onRowPress.bind(this)}
-              >
+            >
 
                 <View style={[styles.imageContainer, even ? styles.imageContainerEven : {}]}>
                     { this.image }

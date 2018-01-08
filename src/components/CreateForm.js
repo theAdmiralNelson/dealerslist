@@ -71,11 +71,11 @@ render() {
     >
       <Image
            style={{ width: 80,
-           height: 60,
-           margin: 5,
-           paddingBottom: 5,
-           borderRadius: 10
-         }}
+             height: 60,
+             margin: 5,
+             paddingBottom: 5,
+             borderRadius: 10
+           }}
            source={{ uri: this.props.image }}
       />
     </TouchableOpacity>) :
@@ -83,9 +83,9 @@ render() {
       onPress={() => this.openImage()}
     >
       <Text
-      style={{
-        color: '#000',
-        alignSelf: 'center',
+        style={{
+          color: '#000',
+          alignSelf: 'center',
         }}
       >
         <Icon name="photo-camera" size={45} color="#000" />
@@ -109,9 +109,10 @@ render() {
     return (
         <View>
         <CardSection
-        style={{ justifyContent: 'center',
-        alignSelf: 'center'
-       }}
+          style={{
+            justifyContent: 'center',
+            alignSelf: 'center'
+          }}
         >
             { dps }
         </CardSection>
@@ -124,8 +125,8 @@ render() {
             value={this.props.make}
             onChangeText={value => this.props.entryUpdate({ prop: 'make', value })}
           />
-
         </View>
+
         <View>
           <Text style={styles.pickerLabelStyle}>Model</Text>
         <InputReform
@@ -135,6 +136,7 @@ render() {
           onChangeText={value => this.props.entryUpdate({ prop: 'model', value })}
         />
         </View>
+
         <View>
           <Text style={styles.pickerLabelStyle}>Price</Text>
         <InputReform
@@ -145,33 +147,33 @@ render() {
         />
         </View>
 
-
-          <View>
-            <Text style={styles.pickerLabelStyle}>Mileage/Hours</Text>
+        <View>
+          <Text style={styles.pickerLabelStyle}>Mileage/Hours</Text>
           <InputReform2
             label="Miles"
             placeholder="23,000 miles"
             value={this.props.miles}
             onChangeText={value => this.props.entryUpdate({ prop: 'miles', value })}
           />
-          </View>
+        </View>
 
-          <View>
-            <Text style={styles.pickerLabelStyle}>Description</Text>
-          <InputReform2
-            label="Description"
-            placeholder="Say something about this item..."
-            value={this.props.description}
-            onChangeText={value => this.props.entryUpdate({ prop: 'description', value })}
-          />
-          </View>
-          <Text style={styles.pickerLabelStyle}>Year</Text>
-         <Picker
-            itemStyle={{ color: '#6f6f70' }}
-            selectedValue={this.props.year}
-            prompt={'Pick A Year'}
-            onValueChange={value => this.props.entryUpdate({ prop: 'year', value })}
-         >
+        <View>
+          <Text style={styles.pickerLabelStyle}>Description</Text>
+        <InputReform2
+          label="Description"
+          placeholder="Say something about this item..."
+          value={this.props.description}
+          onChangeText={value => this.props.entryUpdate({ prop: 'description', value })}
+        />
+        </View>
+
+        <Text style={styles.pickerLabelStyle}>Year</Text>
+        <Picker
+          itemStyle={{ color: '#6f6f70' }}
+          selectedValue={this.props.year}
+          prompt={'Pick A Year'}
+          onValueChange={value => this.props.entryUpdate({ prop: 'year', value })}
+        >
             <Picker.Item label="2019" value="2019" />
             <Picker.Item label="2018" value="2018" />
             <Picker.Item label="2017" value="2017" />
@@ -259,7 +261,6 @@ render() {
 
     </View>
 
-
     );
   }
 }
@@ -272,7 +273,6 @@ const styles = {
     color: '#000'
   },
   container: {
-    //flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
@@ -281,8 +281,7 @@ const styles = {
     margin: 10,
     borderRadius: 10,
     elevation: 8
-
-  },
+ },
 };
 
 const mapStateToProps = (state) => {

@@ -23,7 +23,7 @@ export default (state = INITIAL_STATE, action) => {
         emailAd: ''
        };
     case PASSWORD_FAIL:
-      return { ...state, error: 'Failed To Send Email', loading: false, emailAd: '' }
+      return { ...state, error: 'Failed To Send Email', loading: false, emailAd: '' };
     default:
       return state;
   }

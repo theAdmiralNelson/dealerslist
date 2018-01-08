@@ -39,21 +39,21 @@ export const entryCreate = ({ make, model, year, image, price, miles, descriptio
     .push();
 
     return (dispatch) => {
-    keys.setWithPriority({
-      make,
-      model,
-      year,
-      uid: keys.key,
-      image,
-      sold: false,
-      price,
-      miles,
-      description
-    }, 0 - Date.now())
-      .then(() => {
-        dispatch({ type: ENTRY_CREATE });
+      keys.setWithPriority({
+        make,
+        model,
+        year,
+        uid: keys.key,
+        image,
+        sold: false,
+        price,
+        miles,
+        description
+      }, 0 - Date.now())
+        .then(() => {
+          dispatch({ type: ENTRY_CREATE });
 
-      Actions.main({ type: 'reset' });
+       Actions.main({ type: 'reset' });
     });
   };
 };
@@ -107,7 +107,6 @@ export const entryClear = ({ prop, value }) => {
   return {
     type: ENTRY_CLEAR,
     payload: { prop, value }
-
   };
 };
 
@@ -155,8 +154,7 @@ export const soldResult = () => {
           const myObj = snapshot.val();
           const list = _.pickBy(myObj, ((value) => value.sold === true));
 
-        console.log(myObj);
-        dispatch({ type: SOLD_RESULT_SUCCESS, payload: list });
+          dispatch({ type: SOLD_RESULT_SUCCESS, payload: list });
       });
   };
 };

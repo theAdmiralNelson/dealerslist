@@ -16,14 +16,11 @@ const getEntries = (employees, search) => {
 
   const searchedEntries = _.filter(sortMappedEntries,
     (value) => (value.make.toLowerCase().indexOf(searchLowerCase) !== -1 ||
-      value.model.toLowerCase().indexOf(searchLowerCase) !== -1)
-        && value.sold === false);
+    value.model.toLowerCase().indexOf(searchLowerCase) !== -1)
+    && value.sold === false);
 
-  console.log(mappedEntries);
-  console.log(searchedEntries);
-
-  return searchedEntries;
-  };
+    return searchedEntries;
+};
 
 export default createSelector(
   entriesSelector,

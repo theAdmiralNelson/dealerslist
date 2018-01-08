@@ -10,7 +10,6 @@ export default class Input extends Component {
           labelTextColor={'#fff'}
           placeholder={this.props.placeholder}
           placeholderTextColor={'#a6a7a8'}
-          //placeholderOpacity={0.9}
           autoCorrect={false}
           style={styles.inputStyle}
           value={this.props.value}
@@ -22,10 +21,8 @@ export default class Input extends Component {
           borderWidth={2}
           alignSelf={'center'}
           justifyContent={'center'}
-          //backgroundColor={transparent}
           underlineColorAndroid={'transparent'}
           borderRadius={25}
-          //opacity={0.6}
           textColor={'#000'}
         />
       </View>
@@ -37,7 +34,6 @@ const styles = StyleSheet.create({
   inputStyle: {
     height: 40,
     width: 150,
-    //color: '#000',
     paddingHorizontal: 10,
     borderColor: '#a6a7a8',
     color: '#000'

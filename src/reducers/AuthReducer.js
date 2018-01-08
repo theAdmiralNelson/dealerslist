@@ -37,7 +37,11 @@ export default (state = INITIAL_STATE, action) => {
         password: ''
        };
     case LOGIN_USER_FAIL:
-      return { ...state, error: 'Oops, that wasn\'t quite right.  Try again!', password: '', loading: false };
+      return {
+        ...state,
+        error: 'Oops, that wasn\'t quite right.  Try again!',
+        password: '',
+        loading: false };
     case CREATE_USER_PAGE:
         return { ...state, error: '' };
     case CREATE_USER:
@@ -51,7 +55,11 @@ export default (state = INITIAL_STATE, action) => {
         password: ''
         };
     case CREATE_USER_FAIL:
-      return { ...state, error: 'Failed To Create Account. Try Again', password: '', loading: false };
+      return {
+        ...state,
+        error: 'Failed To Create Account. Try Again',
+        password: '',
+        loading: false };
     case LOGOUT_USER:
       return { ...state, loading: true, error: '' };
     case LOGOUT_USER_SUCCESS:

@@ -13,11 +13,7 @@ import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-//import Share, { ShareSheet, Button } from 'react-native-share';
 import { entryUpdate, entrySave, entryClear, entryDelete, loadTrue, loadFalse } from '../actions';
-import CardReform from './common/CardReform';
-import CardSection from './common/CardSection';
-//import Button from './common/Button';
 import Confirm from './common/Confirm';
 import EmployeeForm from './EmployeeForm';
 
@@ -117,10 +113,6 @@ render() {
     <TouchableOpacity
     style={{
       alignItems: 'center',
-      //justifyContent: 'space-around',
-      //flexDirection: 'row',
-      //marginLeft: '5%'
-      //backgroundColor: 'black',
       flex: 1
       }}
     onPress={this.onBackButtonPress.bind(this)}
@@ -129,8 +121,6 @@ render() {
       style={{ color: '#fff',
       fontFamily: 'Pacifico-Regular',
       fontSize: 20,
-      //justifyContent: 'space-between',
-      //flexDirection: 'column',
      }}
       >
       <Icon name="chevron-left" /> Back
@@ -141,18 +131,12 @@ render() {
      style={{ alignSelf: 'center',
      alignItems: 'center',
      flex: 2,
-     //backgroundColor: 'black',
      justifyContent: 'center'
    }}
-   >
+    >
      <Text
      style={{ color: '#fff',
      fontSize: 20,
-     //flexDirection: 'row',
-     //justifyContent: 'center',
-     //alignSelf: 'center',
-     //alignSelf: 'center',
-     //marginTop: '10%'
      }}
      >
       EDIT
@@ -162,11 +146,7 @@ render() {
 
   <TouchableOpacity
     style={{
-      //flexDirection: 'row',
-      //marginRight: '5%'
       flex: 1,
-      //backgroundColor: 'black',
-      //alignItems: 'center'
       justifyContent: 'space-around'
     }}
     onPress={this.onShareButtonPress.bind(this)}
@@ -202,18 +182,26 @@ render() {
 
     <View style={{ flex: 1 }} />
 
-  <TouchableOpacity style={{ flex: 4, alignItems: 'center', borderColor: 'white', borderRadius: 5 }} onPress={() => this.setState({ showModal: !this.state.showModal })}>
+  <TouchableOpacity
+  style={{
+    flex: 4,
+    alignItems: 'center',
+    borderColor: 'white',
+    borderRadius: 5 }}
+    onPress={
+      () => this.setState({ showModal: !this.state.showModal })
+    }
+  >
    <Text
    style={{ color: '#fff',
    fontFamily: 'Pacifico-Regular',
    fontSize: 20,
-   alignSelf: 'center',
-   //marginLeft: '25%'
+   alignSelf: 'center'
   }}
    >
   Delete
   </Text>
-   </TouchableOpacity>
+ </TouchableOpacity>
 
 
   <Confirm
@@ -221,7 +209,7 @@ render() {
     onAccept={this.onAccept.bind(this)}
     onDecline={this.onDecline.bind(this)}
   >
-  Are you sure you want to delete this entry?
+  Are you sure you want to delete this item?
   </Confirm>
   </View>
   </View>

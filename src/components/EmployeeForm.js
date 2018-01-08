@@ -34,7 +34,7 @@ class EmployeeForm extends Component {
    }
 
    openImage() {
-     this.setState({ loading: false });
+     this.setState({ loading: true });
      this.props.loadFalse();
      console.log('yo!');
      const imageChangeFail = () => {
@@ -91,7 +91,7 @@ class EmployeeForm extends Component {
 
   render() {
     const { image } = this.props.employee;
-    const dps = this.state.loading ? <Spinner animating={'true'} /> :
+    const dps = this.state.loading ? <Spinner animating={true} /> :
     (<View style={styles.container}>
 
 
@@ -137,6 +137,17 @@ class EmployeeForm extends Component {
         >
           { dps }
         </CardSection>
+
+        <Text
+          style={{
+            fontSize: 8,
+            alignSelf: 'center',
+            justifyContent: 'center',
+            paddingBottom: 10
+          }}
+        >
+          Image changes will not appear until saved
+        </Text>
 
         <ButtonReform2
         onPress={() => this.openImage()}

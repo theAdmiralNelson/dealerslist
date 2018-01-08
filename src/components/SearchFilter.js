@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { View, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import Input from './common/Input';
 import ListItem from './ListItem';
@@ -17,8 +17,6 @@ class SearchFilter extends Component {
 
     };
       console.log(this.props.employees);
-
-      //this.onInputChange = this.onInputChange.bind(this);
   }
 
   componentWillMount() {
@@ -26,20 +24,6 @@ class SearchFilter extends Component {
 
     this.createDataSource(this.props);
 }
-    //componentWillReceiveProps(nextProps) {
-
-    ///this.createDataSource(nextProps);
-    //}
-
-    //onInputChange() {
-      //let newlydisplayed = _.filter(this.props.employees, employees =>
-        //employees.make.includes(this.state.text.toLowercase()));
-
-      //this.setState({
-        //text: this.state.text,
-        //currentlyDisplayed: newlydisplayed
-      //});
-    //}
 
     createDataSource({ employees }) {
     const ds = new ListView.DataSource({
@@ -53,10 +37,6 @@ class SearchFilter extends Component {
     }
 
 render() {
-
-  //renderMake();
-          console.log(this.state.text);
-          console.log(this.props.employees);
   return (
     <View>
         <Input
@@ -64,7 +44,6 @@ render() {
           placeholder="John Deere"
           value={this.state.text}
           onChangeText={text => this.setState({ text })}
-          //onChange={this.onInputChange.bind(this)}
         />
         <ListView
           enableEmptySections

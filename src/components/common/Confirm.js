@@ -17,7 +17,7 @@ const Confirm = ({ children, visible, onAccept, onDecline }) => {
           <Text style={styles.textStyle}>{children}</Text>
         </CardSection>
         <CardSection
-        style={{ justifyContent: 'center' }}
+          style={{ justifyContent: 'center' }}
         >
           <ButtonReform
           style={{ paddingRight: 5 }}

@@ -1,5 +1,4 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
-//import { colors } from './index.style';
 
 const { width: viewportWidth, height: viewportHeight } = Dimensions.get('window');
 
@@ -46,7 +45,6 @@ export default StyleSheet.create({
     },
     imageContainerEven: {
         backgroundColor: 'green'
-        //backgroundColor: '#1a1917'
     },
     image: {
         ...StyleSheet.absoluteFillObject,
@@ -62,12 +60,10 @@ export default StyleSheet.create({
         left: 0,
         right: 0,
         height: entryBorderRadius,
-        //backgroundColor: 'white'
         backgroundColor: Platform.OS === 'ios' ? 'white' : '#d7dbe2',
     },
     radiusMaskEven: {
         backgroundColor: 'purple'
-        //backgroundColor: '#1a1917'
     },
     textContainer: {
         justifyContent: 'center',
@@ -75,7 +71,6 @@ export default StyleSheet.create({
         paddingBottom: 20,
         paddingHorizontal: 16,
         backgroundColor: Platform.OS === 'ios' ? 'white' : '#d7dbe2',
-        //backgroundColor: 'white',
         borderBottomLeftRadius: entryBorderRadius,
         borderBottomRightRadius: entryBorderRadius
     },

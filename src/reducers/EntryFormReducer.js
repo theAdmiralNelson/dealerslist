@@ -6,7 +6,6 @@ import {
   ENTRY_CLEAR,
   LOAD_TRUE,
   LOAD_FALSE
-  //IMAGE_SAVE_SUCCESS
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -38,13 +37,6 @@ export default (state = INITIAL_STATE, action) => {
         return { ...state, load: true };
     case LOAD_FALSE:
         return { ...state, load: false };
-
-
-    //case SWITCH_CHANGED:
-      //return { ...state, sold: action.payload.value };
-
-    //case IMAGE_SAVE_SUCCESS:
-      //return INITIAL_STATE;
     default:
         return state;
   }

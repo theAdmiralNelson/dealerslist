@@ -13,23 +13,9 @@ export default class Card extends Component {
 
   const styles = StyleSheet.create({
     containerStyle: {
-      //flex: 1,
-      //borderWidth: 1,
-      //borderRadius: 2,
-      //borderColor: '#ddd',
-      //borderBottomWidth: 0,
       backgroundColor: '#414544',
-      //shadowOffset: { width: 0, heigth: 2 },
       opacity: 0.3,
-      //shadowRadius: 2,
-      //elevation: 1,
-      //marginLeft: 0,
-      //marginRight: 0,
-      //marginTop: 10
       flexDirection: 'row',
-      //alignItems: 'flex-end',
-      //justifyContent: 'space-between',
-      //marginTop: '10%'
       height: 66
     }
   });

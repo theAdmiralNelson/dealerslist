@@ -5,7 +5,6 @@ const soldEntriesSelector = state => state.employees;
 const soldSearchSelector = state => state.searching.search;
 
 const getSoldEntries = (employees, search) => {
-
   const mappedEntries = _.map(employees, (val, uid) => {
     return { ...val, uid };
   });
@@ -21,7 +20,7 @@ const getSoldEntries = (employees, search) => {
 
 
   return soldSearchedEntries;
-  };
+};
 
 export default createSelector(
   soldEntriesSelector,
