@@ -36,10 +36,10 @@ class EmployeeForm extends Component {
    openImage() {
      this.setState({ loading: true });
      this.props.loadFalse();
-     console.log('yo!');
      const imageChangeFail = () => {
+
        this.setState({ loading: false });
-       this.props.loadTrue();
+       this.props.loadTrue()
     };
     const Blob = RNFetchBlob.polyfill.Blob;
     const fs = RNFetchBlob.fs;
@@ -76,10 +76,11 @@ class EmployeeForm extends Component {
         })
         .then((url) => {
           if (url == null || undefined) {
-          return this.props.image;
+          return this.props.image
+            .then(this.props.loadFalse());
         } else {
-          const { image } = this.props;
-          this.props.entryUpdate({ prop: 'image', value: url })
+          //const { image } = this.props;
+          this.props.entryUpdate({ prop: 'image', value: url });
           }
         })
         .then(() => {

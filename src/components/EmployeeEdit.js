@@ -57,13 +57,10 @@ onBackButtonPress() {
 
 onShareButtonPress() {
   const { image, make, model, year, price, miles, description } = this.props.employee;
-  //const test = JSON.stringify(image);
-  //console.log(test);
-  //console.log(image);
   Share.share({
     message: 'Here\'s the latest addition to our inventory:' + ' ' + 'Make: ' + make +
     ' ' + 'Model: ' + model + ' ' + 'Year: ' + year + ' ' + 'Miles/Hours: ' + miles + ' ' + 'Price: '
-    + price + ' ' + 'Description' + description + ' ',
+    + price + ' ' + 'Description:' + description + ' ',
     url: image,
     title: 'Dealerslist Image'
   }, {
@@ -97,7 +94,7 @@ renderButton() {
      </Text>
       </TouchableOpacity>
       );
-    }
+    } 
   }
 
 render() {

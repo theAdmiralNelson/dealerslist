@@ -7,6 +7,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import reducers from './src/reducers';
 import Router from './src/Router';
 
+
 export default class App extends Component {
   componentWillMount() {
    const config = {
