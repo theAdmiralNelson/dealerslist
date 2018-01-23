@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  BackHandler,
+  ToastAndroid
+ } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Madoka } from 'react-native-textinput-effects';
@@ -9,6 +16,17 @@ import Spinner from './common/Spinner';
 
 
 class PasswordReset extends Component {
+  componentWillMount(){
+    BackHandler.addEventListener('hardwareBackPress', () => {
+       try {
+           Actions.pop();
+           return true;
+       } catch (err) {
+           ToastAndroid.show("Cannot go back. Exiting the app...", ToastAndroid.SHORT);
+           return true;
+       }
+   });
+  }
   onEmailAdChange(text) {
     this.props.emailAdChanged(text);
   }

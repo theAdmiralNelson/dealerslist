@@ -30,6 +30,10 @@ build/
 local.properties
 *.iml
 
+# Gradle
+#
+android/gradle.properties
+
 # node.js
 #
 node_modules/
@@ -40,6 +44,10 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
+
+#keystore
+app/
+dealerslist.keystore
 
 # fastlane
 #

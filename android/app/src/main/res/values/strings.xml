@@ -1,7 +1,3 @@
 <resources>
-    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">vZHalFtl7OcAX5_0SHcA7yQxJQXoe450d9d8-5827-4d40-a99d-207dc6f7e492</string>
-    <string moduleConfig="true" name="appcenterCrashes_whenToSendCrashes">ALWAYS_SEND</string>
-    <string moduleConfig="true" name="appcenterAnalytics_whenToEnableAnalytics">ALWAYS_SEND</string>
-    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">15d6dd83-cbdd-4a91-8821-d0454b4bed8</string>
     <string name="app_name">dealerslist</string>
 </resources>

@@ -7,7 +7,9 @@ import {
   ScrollView,
   Share,
   StyleSheet,
-  Platform
+  Platform,
+  BackHandler,
+  ToastAndroid
  } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
@@ -26,6 +28,15 @@ class SoldEmployeeEdit extends Component {
     _.each(this.props.employee, (value, prop) => {
       this.props.entryUpdate({ prop, value });
     });
+    BackHandler.addEventListener('hardwareBackPress', () => {
+       try {
+           Actions.sold();
+           return true;
+       } catch (err) {
+           ToastAndroid.show("Cannot go back. Exiting the app...", ToastAndroid.SHORT);
+           return true;
+       }
+   });
   }
 
   componentWillUnmount() {
@@ -89,6 +100,24 @@ onShareButtonPress() {
 showResult(result) {
   console.log(result);
 }
+
+renderButton() {
+  if (this.props.load === false) {
+    return (
+      <TouchableOpacity style={{ flex: 4, alignItems: 'center' }} onPress={this.onButtonPress.bind(this)}>
+      <Text
+      style={{ color: '#fff',
+      fontFamily: 'Pacifico-Regular',
+      fontSize: 20,
+      alignSelf: 'center'
+      }}
+      >
+     Save Changes
+     </Text>
+      </TouchableOpacity>
+      );
+    }
+  }
 
 render() {
   return (
@@ -160,25 +189,8 @@ render() {
     </ScrollView>
     <View style={styles.footerStyle}>
       <View style={styles.utilityButtonStyle}>
-        <TouchableOpacity
-          style={{ flex: 4, alignItems: 'center' }}
-          onPress={this.onButtonPress.bind(this)}
-        >
-          <Text
-            style={{
-              color: '#fff',
-              fontFamily: 'Pacifico-Regular',
-              fontSize: 20,
-              alignSelf: 'center'
-            }}
-          >
-            Save Changes
-         </Text>
-        </TouchableOpacity>
-
+        {this.renderButton()}
         <View style={{ flex: 1 }} />
-
-
 
         <TouchableOpacity
          style={{
@@ -242,9 +254,9 @@ const styles = StyleSheet.create({
 
 
 const mapStateToProps = (state) => {
-  const { make, model, year, image, sold, price, miles, description } = state.entryForm;
+  const { make, model, year, image, sold, price, miles, description, load } = state.entryForm;
 
-  return { make, model, year, image, sold, price, miles, description };
+  return { make, model, year, image, sold, price, miles, description, load };
 };
 
 export default connect(mapStateToProps, {

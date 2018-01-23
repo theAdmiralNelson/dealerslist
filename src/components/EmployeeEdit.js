@@ -7,13 +7,21 @@ import {
   ScrollView,
   Share,
   StyleSheet,
-  Platform
+  Platform,
+  BackHandler,
+  ToastAndroid
  } from 'react-native';
 import { connect } from 'react-redux';
 import LinearGradient from 'react-native-linear-gradient';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { Actions } from 'react-native-router-flux';
-import { entryUpdate, entrySave, entryClear, entryDelete, loadTrue, loadFalse } from '../actions';
+import {
+  entryUpdate,
+  entrySave,
+  entryClear,
+  entryDelete,
+  loadTrue,
+  loadFalse } from '../actions';
 import Confirm from './common/Confirm';
 import EmployeeForm from './EmployeeForm';
 
@@ -28,6 +36,15 @@ class EmployeeEdit extends Component {
     _.each(this.props.employee, (value, prop) => {
       this.props.entryUpdate({ prop, value });
     });
+    BackHandler.addEventListener('hardwareBackPress', () => {
+       try {
+           Actions.pop();
+           return true;
+       } catch (err) {
+           ToastAndroid.show("Cannot go back. Exiting the app...", ToastAndroid.SHORT);
+           return true;
+       }
+   });
 }
 
   componentWillUnmount() {
@@ -58,10 +75,17 @@ onBackButtonPress() {
 onShareButtonPress() {
   const { image, make, model, year, price, miles, description } = this.props.employee;
   Share.share({
+    ...Platform.select({
+    ios: {
     message: 'Here\'s the latest addition to our inventory:' + ' ' + 'Make: ' + make +
     ' ' + 'Model: ' + model + ' ' + 'Year: ' + year + ' ' + 'Miles/Hours: ' + miles + ' ' + 'Price: '
     + price + ' ' + 'Description:' + description + ' ',
-    url: image,
+    url: image
+  },
+  android: {
+    message: 'Have a look on : \n + image'
+  }
+}),
     title: 'Dealerslist Image'
   }, {
     // Android only:
@@ -94,7 +118,7 @@ renderButton() {
      </Text>
       </TouchableOpacity>
       );
-    } 
+    }
   }
 
 render() {

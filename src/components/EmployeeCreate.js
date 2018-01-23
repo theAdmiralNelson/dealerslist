@@ -5,7 +5,9 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Platform
+  Platform,
+  BackHandler,
+  ToastAndroid
  } from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
@@ -19,6 +21,15 @@ class EmployeeCreate extends Component {
 
 componentWillMount() {
     this.setState({ make: '', model: '', year: '', image: '', sold: '' });
+    BackHandler.addEventListener('hardwareBackPress', () => {
+       try {
+           Actions.pop();
+           return true;
+       } catch (err) {
+           ToastAndroid.show("Cannot go back. Exiting the app...", ToastAndroid.SHORT);
+           return true;
+       }
+   });
   }
 
 onButtonPress() {

@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  BackHandler,
+  ToastAndroid 
+} from 'react-native';
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 import { Madoka } from 'react-native-textinput-effects';
@@ -14,6 +21,17 @@ import Spinner from './common/Spinner';
 
 
 class CreateUser extends Component {
+  componentWillMount(){
+    BackHandler.addEventListener('hardwareBackPress', () => {
+       try {
+           Actions.pop();
+           return true;
+       } catch (err) {
+           ToastAndroid.show("Cannot go back. Exiting the app...", ToastAndroid.SHORT);
+           return true;
+       }
+   });
+  }
   onEmailChange(text) {
     this.props.emailChanged(text);
   }
@@ -91,7 +109,7 @@ class CreateUser extends Component {
                value={this.props.password}
                autoCapitalize={'none'}
                autoCorrect={false}
-               secureTextEntry={'true'}
+               secureTextEntry={true}
                returnKeyType={'done'}
               />
               </View>

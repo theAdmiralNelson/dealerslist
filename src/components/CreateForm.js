@@ -232,15 +232,15 @@ render() {
             <Picker.Item label="1962" value="1962" />
             <Picker.Item label="1961" value="1961" />
             <Picker.Item label="1960" value="1960" />
-            <Picker.Item label="1969" value="1959" />
-            <Picker.Item label="1968" value="1958" />
-            <Picker.Item label="1967" value="1957" />
-            <Picker.Item label="1966" value="1956" />
-            <Picker.Item label="1965" value="1955" />
-            <Picker.Item label="1964" value="1954" />
-            <Picker.Item label="1963" value="1953" />
-            <Picker.Item label="1962" value="1952" />
-            <Picker.Item label="1961" value="1951" />
+            <Picker.Item label="1959" value="1959" />
+            <Picker.Item label="1958" value="1958" />
+            <Picker.Item label="1957" value="1957" />
+            <Picker.Item label="1956" value="1956" />
+            <Picker.Item label="1955" value="1955" />
+            <Picker.Item label="1954" value="1954" />
+            <Picker.Item label="1953" value="1953" />
+            <Picker.Item label="1952" value="1952" />
+            <Picker.Item label="1951" value="1951" />
             <Picker.Item label="1950" value="1950" />
             <Picker.Item label="1949" value="1949" />
             <Picker.Item label="1948" value="1948" />

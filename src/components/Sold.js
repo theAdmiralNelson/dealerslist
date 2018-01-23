@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ListView, View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
+import {
+  ListView,
+  View,
+  TouchableOpacity,
+  Text,
+  StyleSheet,
+  Platform,
+  BackHandler,
+  ToastAndroid
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
@@ -14,6 +23,15 @@ class EmployeeList extends Component {
   componentWillMount() {
     this.props.soldResult();
     this.createDataSource(this.props);
+    BackHandler.addEventListener('hardwareBackPress', () => {
+       try {
+           Actions.main();
+           return true;
+       } catch (err) {
+           ToastAndroid.show("Cannot go back. Exiting the app...", ToastAndroid.SHORT);
+           return true;
+       }
+   });
   }
 
   componentWillReceiveProps(nextProps) {
